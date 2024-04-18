@@ -34,6 +34,11 @@ function create() {
     repeat: 1,
     setXY: { x: 200, y: 0, stepX: 300 },
   });
+  const bottomColumns = this.physics.add.staticGroup({
+    key: "column",
+    repeat: 1,
+    setXY: { x: 350, y: 400, stepX: 300 },
+  });
   const background = this.add.image(0, 0, "background").setOrigin(0, 0);
   const roads = this.physics.add.staticGroup();
   const road = roads.create(400, 568, "road").setScale(2).refreshBody();
