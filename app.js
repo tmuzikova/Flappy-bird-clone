@@ -49,6 +49,8 @@ function create() {
   bird = this.physics.add.sprite(0, 50, "bird").setScale(2);
   bird.setBounce(0.2);
   bird.setCollideWorldBounds(true);
+
+  this.physics.add.collider(bird, road);
 }
 
 function update() {}
