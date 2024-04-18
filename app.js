@@ -33,6 +33,7 @@ let hasLanded = false;
 let cursors;
 let hasBumped = false;
 let isGameStarted = false;
+let messageToPlayer;
 
 function create() {
   const background = this.add.image(0, 0, "background").setOrigin(0, 0);
@@ -75,6 +76,19 @@ function create() {
   );
   this.physics.add.collider(bird, topColumns);
   this.physics.add.collider(bird, bottomColumns);
+
+  messageToPlayer = this.add.text(
+    0,
+    0,
+    `Instructions: Press space bar to start`,
+    {
+      fontFamily: '"Comic Sans MS", Times, serif',
+      fontSize: "20px",
+      color: "white",
+      backgroundColor: "black",
+    }
+  );
+  Phaser.Display.Align.In.BottomCenter(messageToPlayer, background, 0, 50);
 }
 
 function update() {
