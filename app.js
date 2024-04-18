@@ -117,4 +117,17 @@ function update() {
     messageToPlayer.text =
       'Instructions: Press the "^" button to stay upright\nAnd don\'t hit the columns or ground';
   }
+
+  if (hasLanded || hasBumped) {
+    messageToPlayer.text = `Oh no! You crashed!`;
+  }
+
+  if (bird.x > 750) {
+    messageToPlayer.text = `Congrats! You won!`;
+  }
+
+  if (bird.x > 750) {
+    bird.setVelocityY(40);
+    messageToPlayer.text = `Congrats! You won!`;
+  }
 }
