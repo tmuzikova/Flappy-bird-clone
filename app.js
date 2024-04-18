@@ -29,6 +29,9 @@ function preload() {
 }
 
 let bird;
+let hasLanded = false;
+let cursors;
+let hasBumped = false;
 
 function create() {
   const background = this.add.image(0, 0, "background").setOrigin(0, 0);
@@ -50,7 +53,37 @@ function create() {
   bird.setBounce(0.2);
   bird.setCollideWorldBounds(true);
 
+  this.physics.add.overlap(bird, road, () => (hasLanded = true), null, this);
   this.physics.add.collider(bird, road);
+
+  cursors = this.input.keyboard.createCursorKeys();
+
+  this.physics.add.overlap(
+    bird,
+    topColumns,
+    () => (hasBumped = true),
+    null,
+    this
+  );
+  this.physics.add.overlap(
+    bird,
+    bottomColumns,
+    () => (hasBumped = true),
+    null,
+    this
+  );
+  this.physics.add.collider(bird, topColumns);
+  this.physics.add.collider(bird, bottomColumns);
 }
 
-function update() {}
+function update() {
+  if (!hasLanded && !hasBumped) {
+    bird.body.velocity.x = 50;
+  } else {
+    bird.body.velocity.x = 0;
+  }
+
+  if (cursors.up.isDown && !hasLanded && !hasBumped) {
+    bird.setVelocityY(-160);
+  }
+}
