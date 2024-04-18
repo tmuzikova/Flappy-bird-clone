@@ -111,4 +111,10 @@ function update() {
   if (!isGameStarted) {
     bird.setVelocityY(-160);
   }
+
+  if (cursors.space.isDown && !isGameStarted) {
+    isGameStarted = true;
+    messageToPlayer.text =
+      'Instructions: Press the "^" button to stay upright\nAnd don\'t hit the columns or ground';
+  }
 }
